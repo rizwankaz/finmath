@@ -1,6 +1,6 @@
 module CRR
 
-function CoxRossRubinstein(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
+function CRR(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
     δt = T / N
     u = exp(σ * sqrt(δt))
     d = 1 / u
@@ -22,10 +22,10 @@ function CoxRossRubinstein(S::Float64, K::Float64, T::Float64, r::Float64, σ::F
 end
 
 CRRput(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
-    CoxRossRubinstein(S, K, T, r, σ, N, false)
+    CRR(S, K, T, r, σ, N, false)
 
 CRRcall(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
-    CoxRossRubinstein(S, K, T, r, σ, N, true)
+    CRR(S, K, T, r, σ, N, true)
 
 export CRRput, CRRcall
 

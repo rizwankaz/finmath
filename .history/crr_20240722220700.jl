@@ -1,6 +1,4 @@
-module CRR
-
-function CoxRossRubinstein(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
+function CRR(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
     δt = T / N
     u = exp(σ * sqrt(δt))
     d = 1 / u
@@ -22,11 +20,20 @@ function CoxRossRubinstein(S::Float64, K::Float64, T::Float64, r::Float64, σ::F
 end
 
 CRRput(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
-    CoxRossRubinstein(S, K, T, r, σ, N, false)
+    CRR(S, K, T, r, σ, N, false)
 
 CRRcall(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
-    CoxRossRubinstein(S, K, T, r, σ, N, true)
+    CRR(S, K, T, r, σ, N, true)
 
-export CRRput, CRRcall
+S = 100.0  # Current stock price
+K = 100.0  # Strike price
+T = 1.0    # Time to maturity (in years)
+r = 0.05   # Risk-free rate
+σ = 0.2    # Volatility
+N = 1000   # Number of time steps
 
-end
+call_price = CRRcall(S, K, T, r, σ, N)
+put_price = CRRput(S, K, T, r, σ, N)
+
+println("CRR Call Price: ", call_price)
+println("CRR Put Price: ", put_price)
