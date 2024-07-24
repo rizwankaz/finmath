@@ -21,12 +21,12 @@ function CoxRossRubinstein(S::Float64, K::Float64, T::Float64, r::Float64, σ::F
     return C[1]
 end
 
-put(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
+CRRput(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
     CoxRossRubinstein(S, K, T, r, σ, N, false)
 
-call(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
+CRRcall(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
     CoxRossRubinstein(S, K, T, r, σ, N, true)
 
-export put, call
+export CRRput, CRRcall
 
 end

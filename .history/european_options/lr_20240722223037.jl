@@ -8,16 +8,15 @@ end
 
 function LeisenReimer(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
     δt = T / N
-    sqrtδt = sqrt(δt)
     
-    d1 = (log(S / K) + (r + 0.5 * σ^2) * δt) / (σ * sqrtδt)
-    d2 = d1 - σ * sqrtδt
+    d1 = (log(S / K) + (r + 0.5 * σ^2) * T) / (σ * sqrt(T))
+    d2 = d1 - σ * sqrt(T)
     
     p_u = norm_cdf(d1 * sqrt((N + 1/3) + 0.1 / (N + 1)))
     p_d = norm_cdf(d2 * sqrt((N + 1/3) + 0.1 / (N + 1)))
     
-    u = exp(σ * sqrtδt)
-    d = exp(-σ * sqrtδt)
+    u = exp(σ * sqrt(δt))
+    d = 1 / u
     
     p = (exp(r * δt) - d) / (u - d)
     
@@ -36,12 +35,12 @@ function LeisenReimer(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float6
     return C[1]
 end
 
-put(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
+LRput(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
     LeisenReimer(S, K, T, r, σ, N, false)
 
-call(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
+LRcall(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64) = 
     LeisenReimer(S, K, T, r, σ, N, true)
 
-export put, call
+export LRput, LRcall
 
 end

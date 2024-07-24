@@ -29,14 +29,14 @@ function MonteCarlo(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64,
     return option_price
 end
 
-function call(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, M::Int64)
+function MCcall(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, M::Int64)
     return MonteCarlo(S, K, T, r, σ, N, M, true)
 end
 
-function put(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, M::Int64)
+function MCput(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, M::Int64)
     return MonteCarlo(S, K, T, r, σ, N, M, false)
 end
 
-export call, put
+export MCcall, MCput
 
 end

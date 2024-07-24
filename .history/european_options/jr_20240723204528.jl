@@ -1,10 +1,16 @@
 module JR
 
+using SpecialFunctions
+
+function norm_cdf(x::Float64)
+    return 0.5 * (1.0 + erf(x / sqrt(2.0)))
+end
+
 function JarrowRudd(S::Float64, K::Float64, T::Float64, r::Float64, σ::Float64, N::Int64, is_call::Bool)
     δt = T / N
-    u = exp((r - 0.5 * σ^2) * δt + σ * sqrt(δt))
-    d = exp((r - 0.5 * σ^2) * δt - σ * sqrt(δt))
-    p = 0.5
+    u = exp(σ * sqrt(δt))
+    d = 1 / u
+    p = (exp(r * δt) - d) / (u - d)
     
     ST = [S * u^(N - i) * d^i for i in 0:N]
     

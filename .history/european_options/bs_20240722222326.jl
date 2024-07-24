@@ -16,12 +16,12 @@ function blackScholes(S::Float64, K::Float64, T::Float64, r::Float64, sigma::Flo
     end
 end
 
-put(S::Float64, K::Float64, T::Float64, r::Float64, sigma::Float64) = 
+BSput(S::Float64, K::Float64, T::Float64, r::Float64, sigma::Float64) = 
     blackScholes(S, K, T, r, sigma, false)
 
-call(S::Float64, K::Float64, T::Float64, r::Float64, sigma::Float64) = 
+BScall(S::Float64, K::Float64, T::Float64, r::Float64, sigma::Float64) = 
     blackScholes(S, K, T, r, sigma, true)
 
-export put, call
+export BSput, BScall
 
 end
