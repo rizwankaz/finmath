@@ -1,0 +1,19 @@
+{
+  "name": "uniswap",
+  "version": "1.0.0",
+  "description": "analytics",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "finmath"
+  },
+  "keywords": [
+    "uniswap"
+  ],
+  "author": "rizwan",
+  "license": "ISC",
+  "type": "module"
+}
